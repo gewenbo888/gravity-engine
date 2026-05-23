@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --void: #04060f;
+  --warp: #7d8cff;
+  --wave: #2fe0e6;
+  --accret: #ffb43d;
+  --ghost: #e6e9f8;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--void);
+  color: var(--ghost);
+}
+
+body {
+  background-color: #04060f;
+  background-image:
+    radial-gradient(ellipse 1100px 640px at 16% -8%, rgba(125, 140, 255, 0.16), transparent 60%),
+    radial-gradient(ellipse 980px 540px at 88% 4%, rgba(47, 224, 230, 0.09), transparent 62%),
+    radial-gradient(ellipse 1240px 760px at 50% 122%, rgba(255, 180, 61, 0.10), transparent 60%);
+  font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(125, 140, 255, 0.42); color: #f5f7ff; }
+
+.display { font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; font-weight: 700; letter-spacing: -0.015em; }
+.serif { font-family: "Spectral", ui-serif, Georgia, serif; }
+.zh { font-family: "Noto Sans SC", sans-serif; font-weight: 500; }
+.zh-serif { font-family: "Noto Serif SC", serif; }
+.label-mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.24em; text-transform: uppercase; font-size: 0.62rem; color: #9db4ff;
+}
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+.warp-text {
+  color: #c4d2ff;
+  text-shadow: 0 0 24px rgba(125, 140, 255, 0.7), 0 0 72px rgba(81, 96, 240, 0.32);
+}
+.accret-text {
+  color: #ffdc94;
+  text-shadow: 0 0 24px rgba(255, 180, 61, 0.62), 0 0 60px rgba(240, 138, 0, 0.28);
+}
+.wave-text {
+  color: #a6f7f5;
+  text-shadow: 0 0 22px rgba(47, 224, 230, 0.6);
+}
+
+/* holographic instrument panel */
+.holo {
+  background: linear-gradient(155deg, rgba(26, 33, 64, 0.62), rgba(7, 10, 22, 0.92));
+  border: 1px solid rgba(157, 180, 255, 0.12);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.holo:hover { border-color: rgba(125, 140, 255, 0.4); box-shadow: 0 0 40px -16px rgba(125, 140, 255, 0.5); }
+
+/* spectrum divider — curvature → wave → singularity */
+.rule-grav {
+  background: linear-gradient(90deg, transparent, rgba(125,140,255,0.65) 16%, rgba(47,224,230,0.5) 50%, rgba(255,180,61,0.55) 84%, transparent);
+}
+
+/* warped spacetime grid backdrop */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(157, 180, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 180, 255, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+/* radial "gravity well" grid — perspective dishing toward center */
+.well-bg {
+  background:
+    radial-gradient(circle at 50% 60%, rgba(255,180,61,0.06), transparent 40%),
+    repeating-radial-gradient(circle at 50% 60%, transparent 0 38px, rgba(157,180,255,0.06) 38px 39px);
+}
+
+/* animated dash flow for field lines / geodesics */
+@keyframes flow { to { stroke-dashoffset: -36; } }
+.flow { stroke-dasharray: 4 8; animation: flow 1.4s linear infinite; }
+
+@keyframes pulseGlow { 0%,100% { opacity: 0.45; } 50% { opacity: 1; } }
+.pulse { animation: pulseGlow 2.4s ease-in-out infinite; }
+
+@keyframes drift { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+.drift { animation: drift 7s ease-in-out infinite; }
+
+@keyframes riseIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+.rise-in { animation: riseIn 0.9s cubic-bezier(0.2,0.7,0.2,1) both; }
+.lang-fade { animation: riseIn 0.42s ease both; }
+
+/* scanning ticker */
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.ticker { animation: ticker 40s linear infinite; }
+
+/* orbital / accretion-disk rotation */
+@keyframes spinslow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spinslow 28s linear infinite; transform-origin: center; }
+
+/* blinking caret */
+@keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+.caret { animation: blink 1s step-end infinite; }
+
+::-webkit-scrollbar { width: 10px; background: #04060f; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #1a2140, #262f54); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #5160f0; }
